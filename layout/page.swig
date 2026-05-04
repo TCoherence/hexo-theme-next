@@ -57,6 +57,21 @@
           <div class="event-list">
           </div>
           {% include '_scripts/pages/schedule.swig' %}
+        {% elif page.type === 'reports' %}
+          <div class="reports-hub-intro">
+            {{ page.content }}
+          </div>
+          <div class="reports-hub-grid">
+            {% for t in reports_topics() %}
+              <a class="reports-card" href="{{ url_for(t.url) }}">
+                <div class="reports-card-icon"><i class="{{ t.icon }}"></i></div>
+                <div class="reports-card-title">{{ t.label }}</div>
+                <div class="reports-card-meta">{{ t.freq }} · {{ t.count }} 篇</div>
+                <div class="reports-card-latest">{% if t.latest_date %}最新 {{ t.latest_date }}{% else %}尚无报告{% endif %}</div>
+                <div class="reports-card-desc">{{ t.desc }}</div>
+              </a>
+            {% endfor %}
+          </div>
         {% else %}
           {{ page.content }}
         {%- endif %}
