@@ -61,6 +61,23 @@
           <div class="reports-hub-intro">
             {{ page.content }}
           </div>
+          {% set latest = reports_latest() %}
+          {% if latest.items.length > 0 %}
+            <div class="reports-today">
+              <div class="reports-today-header">
+                <i class="fa fa-bolt"></i>
+                <span>最新更新 · {{ latest.date }}</span>
+              </div>
+              <ul class="reports-today-list">
+                {% for it in latest.items %}
+                  <li>
+                    <span class="reports-today-tag">{{ it.topic_label }}</span>
+                    <a href="{{ url_for(it.url) }}">{{ it.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
           <div class="reports-hub-grid">
             {% for t in reports_topics() %}
               <a class="reports-card" href="{{ url_for(t.url) }}">
