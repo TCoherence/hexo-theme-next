@@ -73,9 +73,6 @@
                   <li>
                     <span class="reports-today-tag">{{ it.topic_label }}</span>
                     <a href="{{ url_for(it.url) }}">{{ it.title }}</a>
-                    {% if it.extra_count > 0 %}
-                      <a class="reports-today-more" href="{{ url_for(it.extra_url) }}">+{{ it.extra_count }} 个其他</a>
-                    {% endif %}
                   </li>
                 {% endfor %}
               </ul>
