@@ -6,12 +6,14 @@ if (document.querySelectorAll('pre.mermaid').length) {
     var darkMQ = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
     var mermaidTheme = (darkMQ && darkMQ.matches) ? 'dark' : '{{ theme.mermaid.theme }}';
     mermaid.initialize({
+      startOnLoad: false,
       theme    : mermaidTheme,
       logLevel : 3,
       flowchart: { curve     : 'linear' },
       gantt    : { axisFormat: '%m/%d/%Y' },
       sequence : { actorMargin: 50 }
     });
+    mermaid.run({ querySelector: 'pre.mermaid' });
   }, window.mermaid);
 }
 </script>
